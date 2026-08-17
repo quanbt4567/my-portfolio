@@ -1,4 +1,7 @@
+"use client";
+
 import { useTranslations } from "next-intl";
+import { useRef, useEffect, useState } from "react";
 import ProjectCard from "../../components/ProjectCard";
 import AboutSection from "../../components/AboutSection";
 import SkillsSection from "../../components/SkillsSection";
@@ -34,10 +37,31 @@ const projectsData = [
 export default function Home() {
   const tHero = useTranslations("Hero");
   const tProjects = useTranslations("Projects");
+  
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [footerHeight, setFooterHeight] = useState(0);
+
+  useEffect(() => {
+    if (footerRef.current) {
+      setFooterHeight(footerRef.current.offsetHeight);
+      
+      const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          // Add a small buffer just in case of sub-pixel rendering issues
+          setFooterHeight(entry.contentRect.height);
+        }
+      });
+      observer.observe(footerRef.current);
+      return () => observer.disconnect();
+    }
+  }, []);
 
   return (
     <div className="flex flex-col w-full relative">
-      <main className="relative z-10 bg-white dark:bg-black rounded-b-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] mb-[100vh] sm:mb-[60vh]">
+      <main 
+        className="relative z-10 bg-white dark:bg-black rounded-b-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-[margin-bottom] duration-300"
+        style={{ marginBottom: footerHeight ? `${footerHeight}px` : '100vh' }}
+      >
         {/* Hero Section */}
         <section className="relative flex flex-col items-start justify-center min-h-[90vh] px-6 w-full pt-16 bg-grid-pattern overflow-hidden">
           {/* Radial gradient mask for the grid background */}
@@ -99,7 +123,10 @@ export default function Home() {
       </main>
 
       {/* Sticky Reveal Footer */}
-      <div className="fixed bottom-0 left-0 w-full h-[100vh] sm:h-[60vh] z-0 flex items-center justify-center bg-zinc-950 text-white">
+      <div 
+        ref={footerRef}
+        className="fixed bottom-0 left-0 w-full z-0 flex items-center justify-center bg-zinc-950 text-white"
+      >
         <ContactSection />
       </div>
     </div>
