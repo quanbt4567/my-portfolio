@@ -12,25 +12,32 @@ import { StaggerContainer, StaggerItem } from "../../components/animations/Stagg
 import { TextReveal } from "../../components/animations/TextReveal";
 import { HeroScrollParallax } from "../../components/animations/HeroScrollParallax";
 
-const projectsData = [
+type Project = {
+  title: string;
+  description: string;
+  technologies: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+};
+
+const projectsData: Project[] = [
   {
-    title: "RollFilm Integrated Cinema Management System",
-    description: "A comprehensive cinema management platform featuring seat reservations, ticketing, and administrative dashboards. Built with a scalable database architecture to handle high concurrent user traffic seamlessly.",
-    technologies: ["Next.js", "Java", "Spring Boot", "PostgreSQL", "Tailwind CSS"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+    title: "GiveAID - Charity Web App",
+    description: "A charity web application connecting donors with non-governmental organizations (NGOs), charity programs, and fundraising activities. It features campaign exploration, donations, contribution history, and notifications.",
+    technologies: ["ASP.NET Core", "C#", "SQL Server", "Tailwind CSS", "AWS S3"],
+    githubUrl: "https://github.com/quanbt4567/GiveAID---CharityWebApp",
   },
   {
-    title: "E-Commerce Analytics Dashboard",
-    description: "Real-time analytics dashboard for e-commerce platforms with interactive data visualizations and reporting tools. Provides deep insights into user behavior and sales metrics.",
-    technologies: ["React", "TypeScript", "Node.js", "GraphQL", "Recharts"],
-    githubUrl: "https://github.com",
+    title: "EventSphere",
+    description: "A modern platform built to facilitate the management and tracking of events conveniently and intuitively. It helps users discover, create, manage, and participate in events tailored to their needs.",
+    technologies: ["TypeScript", "CSS", "Docker"],
+    githubUrl: "https://github.com/quanbt4567/EventSphere",
   },
   {
-    title: "AI-Powered Content Generator",
-    description: "SaaS application that leverages advanced machine learning models to generate high-quality marketing copy and blog posts on demand.",
-    technologies: ["Next.js", "OpenAI API", "Prisma", "Stripe"],
-    liveUrl: "https://example.com",
+    title: "Semiconductor Inventory Management",
+    description: "A Jakarta EE-based web application for semiconductor inventory management. Supports component management, suppliers, import/export transactions, reporting, and low-stock tracking alerts.",
+    technologies: ["Java", "Jakarta EE", "EJB", "JSF", "SQL Server"],
+    githubUrl: "https://github.com/quanbt4567/ASM-EJB",
   }
 ];
 
@@ -77,7 +84,7 @@ export default function Home() {
               
               <h1 className="text-6xl sm:text-8xl font-extrabold tracking-tight mb-8">
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-gradient">
-                  <TextReveal text="John Doe." delay={0.2} />
+                  <TextReveal text="Minh Quân." delay={0.2} />
                 </span>
                 <span className="block text-zinc-400 dark:text-zinc-500 mt-2">
                   <TextReveal text={`${tHero("role")}.`} delay={0.8} />
@@ -125,7 +132,7 @@ export default function Home() {
       {/* Sticky Reveal Footer */}
       <div 
         ref={footerRef}
-        className="fixed bottom-0 left-0 w-full z-0 flex items-center justify-center bg-zinc-950 text-white"
+        className="fixed bottom-0 left-0 w-full max-h-[100dvh] overflow-y-auto z-0 bg-zinc-950 text-white"
       >
         <ContactSection />
       </div>
