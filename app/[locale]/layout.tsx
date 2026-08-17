@@ -10,6 +10,7 @@ import Navbar from "../../components/Navbar";
 import SmoothScroll from "../../components/SmoothScroll";
 import CustomCursor from "../../components/animations/CustomCursor";
 import Spotlight from "../../components/animations/Spotlight";
+import Preloader from "../../components/animations/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-black text-black dark:text-white pt-16">
+        <Preloader />
         <CustomCursor />
         <Spotlight />
         <NextIntlClientProvider messages={messages}>

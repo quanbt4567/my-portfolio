@@ -36,67 +36,72 @@ export default function Home() {
   const tProjects = useTranslations("Projects");
 
   return (
-    <div className="flex flex-col w-full pb-10 relative">
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-start justify-center min-h-[90vh] px-6 w-full pt-16 bg-grid-pattern overflow-hidden">
-        {/* Radial gradient mask for the grid background */}
-        <div className="absolute inset-0 bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] pointer-events-none" />
+    <div className="flex flex-col w-full relative">
+      <main className="relative z-10 bg-white dark:bg-black rounded-b-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] mb-[100vh] sm:mb-[60vh]">
+        {/* Hero Section */}
+        <section className="relative flex flex-col items-start justify-center min-h-[90vh] px-6 w-full pt-16 bg-grid-pattern overflow-hidden">
+          {/* Radial gradient mask for the grid background */}
+          <div className="absolute inset-0 bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] pointer-events-none" />
+          
+          <div className="relative z-10 max-w-6xl mx-auto w-full">
+            <HeroScrollParallax>
+              <FadeInUp delay={0.1}>
+                <p className="text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase mb-6 text-sm">
+                  {tHero("greeting")}
+                </p>
+              </FadeInUp>
+              
+              <h1 className="text-6xl sm:text-8xl font-extrabold tracking-tight mb-8">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-gradient">
+                  <TextReveal text="John Doe." delay={0.2} />
+                </span>
+                <span className="block text-zinc-400 dark:text-zinc-500 mt-2">
+                  <TextReveal text={`${tHero("role")}.`} delay={0.8} />
+                </span>
+              </h1>
+              
+              <FadeInUp delay={1.2}>
+                <p className="max-w-2xl text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                  {tHero("description")}
+                </p>
+              </FadeInUp>
+            </HeroScrollParallax>
+          </div>
+        </section>
+
+        <AboutSection />
         
-        <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <HeroScrollParallax>
-            <FadeInUp delay={0.1}>
-              <p className="text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase mb-6 text-sm">
-                {tHero("greeting")}
-              </p>
-            </FadeInUp>
-            
-            <h1 className="text-6xl sm:text-8xl font-extrabold tracking-tight mb-8">
-              <span className="block text-black dark:text-white">
-                <TextReveal text="John Doe." delay={0.2} />
-              </span>
-              <span className="block text-zinc-400 dark:text-zinc-500 mt-2">
-                <TextReveal text={`${tHero("role")}.`} delay={0.8} />
-              </span>
-            </h1>
-            
-            <FadeInUp delay={1.2}>
-              <p className="max-w-2xl text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
-                {tHero("description")}
-              </p>
-            </FadeInUp>
-          </HeroScrollParallax>
-        </div>
-      </section>
+        <SkillsSection />
 
-      <AboutSection />
-      
-      <SkillsSection />
+        {/* Projects Section */}
+        <section className="px-6 max-w-7xl mx-auto w-full pt-32 pb-32 scroll-mt-16" id="projects">
+          <div className="flex items-center gap-6 mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black dark:text-white">
+              {tProjects("title")}
+            </h2>
+            <div className="h-[1px] flex-1 bg-zinc-200 dark:bg-zinc-800" />
+          </div>
 
-      {/* Projects Section */}
-      <section className="px-6 max-w-7xl mx-auto w-full pt-32 scroll-mt-16" id="projects">
-        <div className="flex items-center gap-6 mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black dark:text-white">
-            {tProjects("title")}
-          </h2>
-          <div className="h-[1px] flex-1 bg-zinc-200 dark:bg-zinc-800" />
-        </div>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projectsData.map((project, index) => (
+              <StaggerItem key={index}>
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  technologies={project.technologies}
+                  githubUrl={project.githubUrl}
+                  liveUrl={project.liveUrl}
+                />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </section>
+      </main>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project, index) => (
-            <StaggerItem key={index}>
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                technologies={project.technologies}
-                githubUrl={project.githubUrl}
-                liveUrl={project.liveUrl}
-              />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
-
-      <ContactSection />
+      {/* Sticky Reveal Footer */}
+      <div className="fixed bottom-0 left-0 w-full h-[100vh] sm:h-[60vh] z-0 flex items-center justify-center bg-zinc-950 text-white">
+        <ContactSection />
+      </div>
     </div>
   );
 }
