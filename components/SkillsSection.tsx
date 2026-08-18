@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { Database, Server, Code2, Layers, Layout, Blocks } from "lucide-react";
+import { Database, Server, Layers, Layout, Blocks } from "lucide-react";
 
 export default function SkillsSection() {
   const t = useTranslations("Skills");
@@ -23,7 +23,23 @@ export default function SkillsSection() {
         <div className="h-[1px] flex-1 bg-zinc-200 dark:bg-zinc-800" />
       </div>
 
-      <div className="relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-8">
+      {/* Mobile/Tablet Grid View */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:hidden py-4">
+        {skills.map((skill, index) => (
+          <div
+            key={index}
+            className={`group flex flex-col items-center justify-center p-6 bg-white dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-zinc-800 transition-all duration-300 text-zinc-500 dark:text-zinc-400 ${skill.color} active:scale-95`}
+          >
+            <div className="mb-3 transition-transform duration-300 group-hover:scale-110">
+              {skill.icon}
+            </div>
+            <span className="font-semibold text-sm tracking-tight">{skill.name}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Marquee View */}
+      <div className="hidden lg:flex relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-8">
         <div className="flex w-max min-w-full animate-marquee hover:animate-marquee-paused gap-6 pr-6">
           {[...skills, ...skills, ...skills].map((skill, index) => (
             <div

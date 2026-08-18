@@ -9,14 +9,15 @@
   "Hero": {
     "greeting": "Hello, my name is",
     "role": "Full-Stack Developer",
-    "description": "I specialize in building exceptional, accessible digital experiences. Currently, I'm focused on developing robust backend architectures and highly interactive frontends."
+    "description": "I specialize in building exceptional, accessible digital experiences. Currently, I'm focused on developing robust backend architectures and highly interactive frontends.",
+    "name": "Minh Quan."
   },
   "Projects": {
     "title": "Featured Projects"
   },
   "About": {
     "title": "About Me",
-    "biography1": "Hello! I'm Nguyễn Trần Minh Quân, a freshman at the Industrial University of Ho Chi Minh City (IUH) majoring in Information Technology.",
+    "biography1": "Hello! I'm Nguyen Tran Minh Quan, a freshman at the Industrial University of Ho Chi Minh City (IUH) majoring in Information Technology.",
     "biography2": "I am deeply passionate about programming, constantly exploring new technologies, and also enjoy staying active through sports.",
     "biography3": "I am highly motivated to build a strong foundation in software engineering and am looking forward to long-term growth and development in the tech industry."
   },

@@ -11,6 +11,7 @@ import SmoothScroll from "../../components/SmoothScroll";
 import CustomCursor from "../../components/animations/CustomCursor";
 import Spotlight from "../../components/animations/Spotlight";
 import Preloader from "../../components/animations/Preloader";
+import { MacDock } from "../../components/animations/MacDock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,6 +57,7 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <SmoothScroll>
               <Navbar locale={locale} />
+              <MacDock locale={locale} />
               <main className="flex-1 flex flex-col">
                 {children}
               </main>

@@ -25,6 +25,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Hide scrollbar completely but keep functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .hide-cursor, .hide-cursor * {
   cursor: none !important;
 }
@@ -58,4 +67,12 @@ body {
 }
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
 }

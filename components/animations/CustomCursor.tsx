@@ -18,6 +18,7 @@ export default function CustomCursor() {
   useEffect(() => {
     // Only show custom cursor on non-touch devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsVisible(true);
 
     const moveCursor = (e: MouseEvent) => {

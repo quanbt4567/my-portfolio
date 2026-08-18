@@ -17,6 +17,7 @@ export default function Navbar({ locale }: { locale: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -55,18 +56,7 @@ export default function Navbar({ locale }: { locale: string }) {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          {/* Desktop Navigation (Moved to MacDock) */}
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-4">

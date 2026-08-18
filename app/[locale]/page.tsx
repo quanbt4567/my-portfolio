@@ -9,8 +9,14 @@ import ContactSection from "../../components/ContactSection";
 import FadeInUp from "../../components/animations/FadeInUp";
 import { StaggerContainer, StaggerItem } from "../../components/animations/StaggerContainer";
 
-import { TextReveal } from "../../components/animations/TextReveal";
 import { HeroScrollParallax } from "../../components/animations/HeroScrollParallax";
+import { Typewriter } from "../../components/animations/Typewriter";
+import { AuroraBackground } from "../../components/animations/AuroraBackground";
+import { BlurText } from "../../components/animations/BlurText";
+import { ShinyText } from "../../components/animations/ShinyText";
+import { ParticleNetwork } from "../../components/animations/ParticleNetwork";
+
+import { FlappyBird } from "../../components/animations/FlappyBird";
 
 type Project = {
   title: string;
@@ -53,7 +59,7 @@ export default function Home() {
       setFooterHeight(footerRef.current.offsetHeight);
       
       const observer = new ResizeObserver((entries) => {
-        for (let entry of entries) {
+        for (const entry of entries) {
           // Add a small buffer just in case of sub-pixel rendering issues
           setFooterHeight(entry.contentRect.height);
         }
@@ -64,41 +70,45 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full relative">
+    <div className="flex flex-col w-full relative overflow-x-hidden">
       <main 
         className="relative z-10 bg-white dark:bg-black rounded-b-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-[margin-bottom] duration-300"
         style={{ marginBottom: footerHeight ? `${footerHeight}px` : '100vh' }}
       >
         {/* Hero Section */}
-        <section className="relative flex flex-col items-start justify-center min-h-[90vh] px-6 w-full pt-16 bg-grid-pattern overflow-hidden">
-          {/* Radial gradient mask for the grid background */}
-          <div className="absolute inset-0 bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] pointer-events-none" />
-          
-          <div className="relative z-10 max-w-6xl mx-auto w-full">
-            <HeroScrollParallax>
-              <FadeInUp delay={0.1}>
-                <p className="text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase mb-6 text-sm">
-                  {tHero("greeting")}
-                </p>
-              </FadeInUp>
-              
-              <h1 className="text-6xl sm:text-8xl font-extrabold tracking-tight mb-8">
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-gradient">
-                  <TextReveal text="Minh Quân." delay={0.2} />
-                </span>
-                <span className="block text-zinc-400 dark:text-zinc-500 mt-2">
-                  <TextReveal text={`${tHero("role")}.`} delay={0.8} />
-                </span>
-              </h1>
-              
-              <FadeInUp delay={1.2}>
-                <p className="max-w-2xl text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
-                  {tHero("description")}
-                </p>
-              </FadeInUp>
-            </HeroScrollParallax>
+        <AuroraBackground className="min-h-[100vh] px-6 py-24 md:pt-32 flex items-center justify-center relative overflow-hidden">
+          <ParticleNetwork />
+          <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="flex flex-col justify-center">
+              <HeroScrollParallax>
+                <FadeInUp delay={0.1}>
+                  <p className="mb-6">
+                    <ShinyText text={tHero("greeting")} className="text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-sm" />
+                  </p>
+                </FadeInUp>
+                
+                <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8">
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-[length:200%_auto] animate-gradient">
+                    <BlurText text={tHero("name")} delay={0.2} />
+                  </span>
+                  <span className="block text-blue-600 dark:text-blue-400 mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold">
+                    <Typewriter text={`${tHero("role")}.`} delay={0.8} />
+                  </span>
+                </h1>
+                
+                <FadeInUp delay={1.2}>
+                  <p className="max-w-xl text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+                    {tHero("description")}
+                  </p>
+                </FadeInUp>
+              </HeroScrollParallax>
+            </div>
+
+            <FadeInUp delay={1.5} className="w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
+              <FlappyBird />
+            </FadeInUp>
           </div>
-        </section>
+        </AuroraBackground>
 
         <AboutSection />
         

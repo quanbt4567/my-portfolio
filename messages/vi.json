@@ -9,7 +9,8 @@
   "Hero": {
     "greeting": "Xin chào, tôi là",
     "role": "Lập trình viên Full-Stack",
-    "description": "Tôi chuyên xây dựng các trải nghiệm kỹ thuật số xuất sắc và dễ tiếp cận. Hiện tại, tôi đang tập trung phát triển các kiến trúc backend mạnh mẽ và frontend có tính tương tác cao."
+    "description": "Tôi chuyên xây dựng các trải nghiệm kỹ thuật số xuất sắc và dễ tiếp cận. Hiện tại, tôi đang tập trung phát triển các kiến trúc backend mạnh mẽ và frontend có tính tương tác cao.",
+    "name": "Minh Quân."
   },
   "Projects": {
     "title": "Dự án Nổi bật"
