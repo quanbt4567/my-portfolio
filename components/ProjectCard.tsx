@@ -11,6 +11,7 @@ export interface ProjectCardProps {
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
+  onClick?: () => void;
 }
 
 export default function ProjectCard({
@@ -19,6 +20,7 @@ export default function ProjectCard({
   technologies,
   githubUrl,
   liveUrl,
+  onClick,
 }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -54,12 +56,13 @@ export default function ProjectCard({
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       style={{
         rotateX,
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="group relative flex flex-col justify-between p-8 bg-white dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-500 hover:shadow-2xl h-full"
+      className="group relative flex flex-col justify-between p-8 bg-white dark:bg-zinc-900/50 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-500 hover:shadow-2xl h-full cursor-pointer"
     >
       <div
         className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-transparent to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/10 transition-colors duration-500 ease-out rounded-3xl pointer-events-none"
@@ -93,6 +96,7 @@ export default function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="text-zinc-500 hover:text-black dark:hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
             >
               <Code className="w-5 h-5" />
@@ -104,6 +108,7 @@ export default function ProjectCard({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="text-zinc-500 hover:text-black dark:hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
             >
               <ExternalLink className="w-5 h-5" />

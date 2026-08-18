@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useRef, useEffect, useState } from "react";
 import ProjectCard from "../../components/ProjectCard";
+import ProjectModal from "../../components/ProjectModal";
 import AboutSection from "../../components/AboutSection";
 import SkillsSection from "../../components/SkillsSection";
 import ContactSection from "../../components/ContactSection";
@@ -22,6 +23,7 @@ type Project = {
   title: string;
   description: string;
   technologies: string[];
+  features?: string[];
   githubUrl?: string;
   liveUrl?: string;
 };
@@ -31,18 +33,38 @@ const projectsData: Project[] = [
     title: "GiveAID - Charity Web App",
     description: "A charity web application connecting donors with non-governmental organizations (NGOs), charity programs, and fundraising activities. It features campaign exploration, donations, contribution history, and notifications.",
     technologies: ["ASP.NET Core", "C#", "SQL Server", "Tailwind CSS", "AWS S3"],
+    features: [
+      "Connect philanthropists with projects and charitable organizations",
+      "Allow donations for specific programs",
+      "Manage user information and donation history",
+      "Support admin features for content and system data management",
+      "Provide introduction, gallery, member, NGO, programme, and donation pages"
+    ],
     githubUrl: "https://github.com/quanbt4567/GiveAID---CharityWebApp",
   },
   {
     title: "EventSphere",
     description: "A modern platform built to facilitate the management and tracking of events conveniently and intuitively. It helps users discover, create, manage, and participate in events tailored to their needs.",
     technologies: ["TypeScript", "CSS", "Docker"],
+    features: [
+      "Centralized event information management",
+      "Assist users in searching and participating in events easily",
+      "Provide an intuitive, user-friendly interface",
+      "Optimize the experience of tracking activities and events"
+    ],
     githubUrl: "https://github.com/quanbt4567/EventSphere",
   },
   {
     title: "Semiconductor Inventory Management",
     description: "A Jakarta EE-based web application for semiconductor inventory management. Supports component management, suppliers, import/export transactions, reporting, and low-stock tracking alerts.",
     technologies: ["Java", "Jakarta EE", "EJB", "JSF", "SQL Server"],
+    features: [
+      "Manage the list of semiconductor components",
+      "Track inventory levels and alert when running low",
+      "Manage suppliers and record inventory transactions",
+      "View reports and operation statistics",
+      "Test EJB and Message-Driven Bean functionalities"
+    ],
     githubUrl: "https://github.com/quanbt4567/ASM-EJB",
   }
 ];
@@ -53,6 +75,7 @@ export default function Home() {
   
   const footerRef = useRef<HTMLDivElement>(null);
   const [footerHeight, setFooterHeight] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     if (footerRef.current) {
@@ -132,6 +155,7 @@ export default function Home() {
                   technologies={project.technologies}
                   githubUrl={project.githubUrl}
                   liveUrl={project.liveUrl}
+                  onClick={() => setSelectedProject(project)}
                 />
               </StaggerItem>
             ))}
@@ -146,6 +170,12 @@ export default function Home() {
       >
         <ContactSection />
       </div>
+
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </div>
   );
 }
